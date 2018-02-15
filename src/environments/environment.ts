@@ -7,6 +7,5 @@ export const environment = {
     projectId: "bacolodbikeads",
     storageBucket: "",
     messagingSenderId: "860955167884"
-
     }
 };
