@@ -1,48 +1,36 @@
+/**
+ * @license
+ * Copyright Akveo. All Rights Reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { CoreModule } from './@core/core.module';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-///// Start FireStarter
-
-// Core
-import { CoreModule } from './core/core.module';
-
-// Shared/Widget
-import { SharedModule } from './shared/shared.module';
-
-// Feature Modules
-import { ItemModule } from './items/shared/item.module';
-import { UploadModule } from './uploads/shared/upload.module';
-import { UiModule } from './ui/shared/ui.module';
-import { NotesModule } from './notes/notes.module';
-///// End FireStarter
-
-import { environment } from '../environments/environment';
-
-import { AngularFireModule } from 'angularfire2';
-export const firebaseConfig = environment.firebaseConfig;
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AppRoutingModule } from './app-routing.module';
+import { ThemeModule } from './@theme/theme.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    FormsModule,
+    BrowserAnimationsModule,
+    HttpModule,
     AppRoutingModule,
-    CoreModule,
-    SharedModule,
-    ItemModule,
-    UiModule,
-    NotesModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+
+    NgbModule.forRoot(),
+    ThemeModule.forRoot(),
+    CoreModule.forRoot(),
   ],
-  bootstrap: [
-    AppComponent,
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/' },
   ],
 })
-export class AppModule { }
+export class AppModule {
+}
